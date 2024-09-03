@@ -1,5 +1,5 @@
 import('https://unpkg.com/highlighted-code').then(({default: HighlightedCode}) => {
-    HighlightedCode.useTheme('dark'); // Choisissez le thème souhaité
+    HighlightedCode.useTheme('monokai'); // Choisissez le thème souhaité
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -49,9 +49,11 @@ function enableTabIndent(textarea) {
 }
 
 function KillForbidenJSCode(code){
-    const JSsecurityCheckRegex = /XMLHttpRequest|fetch|import|localStorage|Set-Cookie|/i;
+    console.log(code)
+    const JSsecurityCheckRegex = /XMLHttpRequest|fetch|import|localStorage|Set-Cookie/i;
     const CSSsecurityCheckRegex = /body|textarea|title|button|input|select/i;
     if (JSsecurityCheckRegex.test(code)){
+        console.log("gné?")
         console.log("Utilisation d'un élément de code JS interdit: XMLHttpRequest | fetch | import | localStorage | Set-Cookie")
         return false
     }
