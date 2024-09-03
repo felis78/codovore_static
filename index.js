@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 async function modify_dom() {
-    console.log("click")
     let css = document.getElementById("CSSEditor").value;
     let html = document.getElementById("code_html").value;
     let js = document.getElementById("JSEditor").value;
@@ -31,8 +30,6 @@ async function modify_dom() {
         return false
     }
     eval(js);
-
-
 }
 
 //Modification de l'effet de la touche tab pour permettre l'indentation dans le code
@@ -53,14 +50,13 @@ function enableTabIndent(textarea) {
 
 function KillForbidenJSCode(code){
     const JSsecurityCheckRegex = /XMLHttpRequest|fetch|import|localStorage|Set-Cookie|/i;
-    const CSSsecurityCheckRegex = /body|textarea|title|button|input|select/;
-    console.log(securityCheckRegex.test(code))
+    const CSSsecurityCheckRegex = /body|textarea|title|button|input|select/i;
     if (JSsecurityCheckRegex.test(code)){
         console.log("Utilisation d'un élément de code JS interdit: XMLHttpRequest | fetch | import | localStorage | Set-Cookie")
         return false
     }
     if (CSSsecurityCheckRegex.test(code)){
-        console.log("Utilisation d'un élément de code css interdit: /body|textarea|title|button|input|select")
+        console.log("Utilisation d'un élément de code css interdit: body|textarea|title|button|input|select")
         return false
     }
     console.log("ok")
