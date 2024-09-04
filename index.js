@@ -49,11 +49,9 @@ function enableTabIndent(textarea) {
 }
 
 function KillForbidenJSCode(code){
-    console.log(code)
     const JSsecurityCheckRegex = /XMLHttpRequest|fetch|import|localStorage|Set-Cookie/i;
     const CSSsecurityCheckRegex = /body|textarea|title|button|input|select/i;
     if (JSsecurityCheckRegex.test(code)){
-        console.log("gné?")
         console.log("Utilisation d'un élément de code JS interdit: XMLHttpRequest | fetch | import | localStorage | Set-Cookie")
         return false
     }
@@ -61,7 +59,6 @@ function KillForbidenJSCode(code){
         console.log("Utilisation d'un élément de code css interdit: body|textarea|title|button|input|select")
         return false
     }
-    console.log("ok")
     return true
 }
 
