@@ -6300,7 +6300,7 @@ if (typeof exports === 'object' && typeof module !== 'undefined') { module.expor
       contains: [] // defined later
     };
     const HTML_TEMPLATE = {
-      begin: '\.?html`',
+      begin: '\.?templates`',
       end: '',
       starts: {
         end: '`',
@@ -14399,7 +14399,7 @@ if (typeof exports === 'object' && typeof module !== 'undefined') { module.expor
       contains: [] // defined later
     };
     const HTML_TEMPLATE = {
-      begin: '\.?html`',
+      begin: '\.?templates`',
       end: '',
       starts: {
         end: '`',

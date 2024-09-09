@@ -29,7 +29,14 @@ async function modify_dom() {
     if (!KillForbidenJSCode(js)) {
         return false
     }
-    eval(js);
+    try
+    {
+        eval(js);
+    }
+    catch (e) {
+        console.log("Error: " + e.message )
+    }
+
 }
 
 //Modification de l'effet de la touche tab pour permettre l'indentation dans le code
@@ -83,6 +90,13 @@ console.error = function(...args) {
     logToConsole('%c' + args.join(' '), 'color: red;');
     originalConsoleError.apply(console, args);
 };
+
+const originalConsoleDebug = console.debug;
+console.debug = function(...args) {
+    logToConsole(args.join(' '), 'color: red');
+    originalConsoleDebug.apply(console, args)
+
+}
 
 let textarea = document.getElementById('codeEditors');
 enableTabIndent(textarea)

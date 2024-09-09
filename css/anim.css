@@ -1,0 +1,22 @@
+﻿.intro
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+}
+.title
+{
+    position: relative;
+}
+.words_canvas, .pacman_canvas
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.links
+{
+    margin: auto;
+}

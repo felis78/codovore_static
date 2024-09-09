@@ -295,7 +295,7 @@
       contains: [] // defined later
     };
     const HTML_TEMPLATE = {
-      begin: '\.?html`',
+      begin: '\.?templates`',
       end: '',
       starts: {
         end: '`',

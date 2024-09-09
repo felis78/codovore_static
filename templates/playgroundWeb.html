@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" href="../addons/highlightJS/styles/default.css">
+    <link rel="stylesheet" type="text/css" href="../css/gloabal_styling.css">
+    <script src="../addons/highlightJS/highlight.min.js"></script>
+    <title>Guigui HTML Playground</title>
+</head>
+<body>
+<p> Pour des raisons de sécurité, certaines fonctionnalités CSS et JS ont été désactivées. Si vous les utilisez,
+    elles seront bloquées et un message s'affichera dans la console. </p>
+<div class="playground">
+
+    <div class="editors" id="codeEditors">
+        <div>
+            <div><label class="editorsTitles" for="code_html">HTML</label></div>
+            <textarea class="editArea"  spellcheck="false" id="code_html" rows="20" cols="50"
+                      is="highlighted-code"
+                      language="html" tab-size="2" auto-height></textarea>
+        </div>
+
+        <div>
+            <p></p>
+            <div><label class="editorsTitles" for="CSSEditor">CSS</label></div>
+            <textarea class="editArea" spellcheck="false" id="CSSEditor" rows="20" cols="50"
+                      is="highlighted-code"
+                      language="css" tab-size="2" auto-height></textarea>
+
+        </div>
+        <div>
+            <div class="editorsTitles"><label  for="JSEditor">JavaScript</label></div>
+            <textarea class="editArea"  id="JSEditor" spellcheck="false" rows="20" cols="50"
+                      is="highlighted-code"
+                      language="javascript" tab-size="2" auto-height></textarea>
+        </div>
+        <button id="button">Play</button>
+    </div>
+    <div class="results">
+        <div class="viewCode" id="zonedinsertion"></div>
+        <div><pre><code id="console" class="console"> </code></pre></div>
+    </div>
+    <script type="module" src="../JS/plaigroundWeb.js"></script>
+
+</div>
+</body>
+</html>
