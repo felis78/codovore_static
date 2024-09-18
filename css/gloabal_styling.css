@@ -56,3 +56,54 @@
 }
 
 textarea[is="highlighted-code"] { padding: 8px; }
+
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: row;
+}
+
+.gpt_answer
+{
+    max-width: inherit;
+    max-height: 30rem;
+    min-height: 30rem;
+    background-color: white;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    color: black;
+    overflow: scroll;
+}
+
+.gpt_answer code
+{
+    color: blue;
+}
+
+.toast {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    animation: fadeIn 0.5s ease-in-out;
+
+
+}
+
+.submit_gpt
+{
+    margin-top: 0.5rem;
+    color:black;
+    background-color: #4cd213;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
