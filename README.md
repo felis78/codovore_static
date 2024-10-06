@@ -1,2 +1,3 @@
 # codovore_playground
-static part of codovore.fr
+
+a tiny html/css/js playground. An AI assistant powered by OpenAI previously integrated
