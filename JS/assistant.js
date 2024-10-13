@@ -19,14 +19,18 @@ export async function showToast(message, type = 'info') {
         <input type="text" class="ask_gpt"  id="ask_gpt" required minlength="4"
         size="100"/></div>
         <div>
-        <button class="submit_gpt" id="submit_gpt">Submit</button>
+        <div> Press enter to submit </div>
 </div>
     `;
     toastContainer.appendChild(toast);
-    toast.querySelector('.submit_gpt').addEventListener('click', () =>
+    toast.querySelector('.ask_gpt').addEventListener('keypress', (event) =>
     {
-        let question = document.getElementById('ask_gpt').value
-        submit_to_gpt(question)
+        if (event.key === 'Enter') {
+            event.preventDefault()
+            let question = document.getElementById('ask_gpt').value
+            submit_to_gpt(question)
+        }
+
     });
 
     toast.querySelector('.close-toast').addEventListener('click', () => {
