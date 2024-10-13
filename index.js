@@ -2,7 +2,7 @@ import('https://unpkg.com/highlighted-code').then(({default: HighlightedCode}) =
     HighlightedCode.useTheme('monokai'); // Choisissez le thème souhaité
 });
 
-import {submit_to_gpt, delete_thread, create_thread} from "./JS/assistant.js";
+import {delete_thread, showToast} from "./JS/assistant.js";
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -87,48 +87,13 @@ console.error = function(...args) {
     originalConsoleError.apply(console, args);
 };
 
-let one_toast = 0;
-let toastIdCounter = 0;
-async function showToast(message, type = 'info') {
-    const toastContainer = document.getElementById('toast-container');
-
-    const toast = document.createElement('div');
-    await create_thread()
-    one_toast ++
-    toast.id = `toast-${toastIdCounter++}`;
-    toast.className = `toast ${type}`;
-    toast.innerHTML = `  <div>
-        <button class="close-toast">&times;</button>
-        <span>${message}</span>
-        </div>
-        <div class ="gpt_answer" id="gpt_answer"></div>
-        <input type="text" class="ask_gpt"  id="ask_gpt" required minlength="4"
-        size="100"/></div>
-        <div>
-        <button class="submit_gpt" id="submit_gpt">Submit</button>
-</div>
-    `;
-    toastContainer.appendChild(toast);
-    toast.querySelector('.submit_gpt').addEventListener('click', () =>
-    {
-        let question = document.getElementById('ask_gpt').value
-        submit_to_gpt(question)
-    });
-
-    toast.querySelector('.close-toast').addEventListener('click', () => {
-        toast.style.animation = 'fadeOut 0.5s ease-in-out forwards';
-        one_toast = 0;
-        toast.remove();
-        delete_thread()
-
-    });
-}
 // contrôle du toast
 document.addEventListener('DOMContentLoaded', () => {
     const button = document.createElement('button');
     button.textContent = "Afficher l'assistant";
     button.onclick = () => {
-        if (one_toast === 0)
+        const toast = document.getElementById('toast')
+        if (!toast)
         {
             showToast('Assistant', 'success');
         }
@@ -141,6 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 })
+
+window.addEventListener('beforeunload', function (event){
+    navigator.sendBeacon("http://localhost:3000/api/del_thread")
+});
 
 let textarea = document.getElementById('codeEditors');
 enableTabIndent(textarea)
