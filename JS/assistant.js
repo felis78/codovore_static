@@ -64,8 +64,9 @@ export async function submit_to_gpt(question) {
     let answer_zone = document.getElementById('gpt_answer')
     divContainerUser.innerHTML = `<p> User > ${question} </p>`
     answer_zone.appendChild(divContainerUser);
+    answer_zone.scrollTop = answer_zone.scrollHeight;
     document.getElementById('ask_gpt').value=""
-    const response = await fetch('http://localhost:3000/api/messages', {
+    await fetch('/api/messages', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -74,27 +75,19 @@ export async function submit_to_gpt(question) {
     })
         .then(res => res.json())
         .then(response => {
-            response.datas.data.reverse().forEach(resp => {
-                divContainerGPT.innerHTML = md.render(`${resp.role} > ${resp.content[0].text.value}`)
-                answer_zone.appendChild(divContainerGPT);
-                answer_zone.scrollTop = answer_zone.scrollHeight;
-            });
+            let array= response.datas.data[0]
+            divContainerGPT.innerHTML = md.render(`${array.role} > ${array.content[0].text.value}`)
+            answer_zone.appendChild(divContainerGPT);
+            answer_zone.scrollTop = answer_zone.scrollHeight;
         })
 }
 
 export async function create_thread(){
-    await fetch("http://localhost:3000/api/new_thread")
+    await fetch("/api/new_thread")
 }
 
 export async function delete_thread(){
-    await fetch("http://localhost:3000/api/del_thread")
-}
-
-export function markdown() {
-    const md = markdownIt()
-    const result = md.render('Voici un exemple simple de code JavaScript qui affiche "Hello, World!" dans la console : ```javascript console.log("Hello, World!"); ```');
-    console.log(result)
-
+    await fetch("/api/del_thread")
 }
 
 export function correct_code(code_to_correct, from_function){
